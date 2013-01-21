@@ -8,7 +8,7 @@ Hellorails::Application.routes.draw do
 
   root :to => "home#index", :as => :home
   
-  match '/auth/:provider/callback' => 'sessions#create'
+  match '/auth/:provider/callback' => 'sessions#create', :as => :auth_provider_callback
   match '/auth/failure' => 'sessions#failure'
   match '/signin' => 'sessions#create', :as => :signin
   match '/signout' => 'sessions#destroy', :as => :signout

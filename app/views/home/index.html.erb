@@ -1,3 +1,9 @@
 <h1>Home</h1>
 <p>Hello <%= @you.name %> and welcome to my site. I am <%= @person.name %> and I was born in <%= @person.dob.strftime("%Y") %>.</p>
 <%= link_to "View people", people_path %> <%= link_to "Sign up", new_person_path %>
+<% if !@you.Facebook %>
+<%= link_to "Add Facebook", auth_provider_callback( :provider => "facebook" ) %>
+<% end %>
+<% if !@you.Twitter %>
+<%= link_to "Add Twitter", auth_provider_callback( :provider => "twitter" ) %>
+<% end %>

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :authorizations
   accepts_nested_attributes_for :authorizations
   
-  attr_accessible :name, :email
+  attr_accessible :name, :user_id, :email
   validates :name, :presence => true
   
   def self.create_with_omniauth(auth)
@@ -32,13 +32,30 @@ class User < ActiveRecord::Base
     end
   end
   
-  def has_auth_with( provider )
-    provider
+  def get_auth_for( provider )
+    auth = authorizations.where( :provider => provider ).first
+    # authorizations.uniq
   end
   
   def Twitter
-    self.has_auth_with( provider )
+    if( auth = self.get_auth_for( "twitter" ) )
+      Twitter::Client.new(
+        :consumer_key => 'F33v0Lp4ZWVowwmkyQT4MQ',
+        :consumer_secret => 'HSMY5GLcIeOMmbFfk5FAA1b94R361eO8XMikamTyEI',
+        :oauth_token => auth.token,
+        :oauth_token_secret => auth.secret
+      )
+    end
   end
+  
+  def Facebook
+    if( auth = self.get_auth_for( "facebook" ) )
+      true
+    else
+      false
+    end
+  end
+    
   
 end
 

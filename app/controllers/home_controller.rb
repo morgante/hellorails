@@ -3,6 +3,6 @@ class HomeController < ApplicationController
     @person = Person.find(1)
     @you = current_user
     
-    puts current_user.Twitter
+    # @message = current_user.Twitter.update("This is a tweet from my client.")
   end
 end
