@@ -19,6 +19,9 @@ gem 'json'
 
 gem 'omniauth'
 
+gem 'omniauth-facebook'
+gem 'koala'
+
 gem 'omniauth-twitter'
 gem 'twitter'
 

@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   
   def Facebook
     if( auth = self.get_auth_for( "facebook" ) )
-      true
+      Koala::Facebook::API.new( auth.token )
     else
       false
     end
