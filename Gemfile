@@ -18,7 +18,9 @@ gem 'sqlite3'
 gem 'json'
 
 gem 'omniauth'
+
 gem 'omniauth-twitter'
+gem 'twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
